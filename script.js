@@ -11,16 +11,11 @@ function computerPlay () {
     }
 }
 
-function playerSelection () {
-    return (window.prompt('Please type rock, paper, or scissors.',)).toLowerCase();
-}
-
 function playGame () {
-    let rounds = parseInt(window.prompt('How many rounds would you like to play?', ));
     for (let i = 0; i < rounds; i++) {
         let computer = computerPlay();
         console.log("Computer chose: " + computer)
-        switch (playerSelection()) {
+        switch () {
             case 'rock':
                 if (computer === 'rock') {
                     console.log("Both rock, that's a tie!");
