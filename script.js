@@ -15,7 +15,7 @@ function playGame () {
     for (let i = 0; i < rounds; i++) {
         let computer = computerPlay();
         console.log("Computer chose: " + computer)
-        switch () {
+        switch (true) {
             case 'rock':
                 if (computer === 'rock') {
                     console.log("Both rock, that's a tie!");
@@ -54,3 +54,26 @@ function playGame () {
         }
     } 
 }
+
+let container = document.querySelector('#container')
+
+let mainMenu = document.createElement('div');
+mainMenu.setAttribute('class', 'menu');
+
+let mainText = document.createElement('p');
+mainText.textContent = 'Super Smash Janken';
+
+let mainButton = document.createElement('button');
+mainButton.setAttribute('class', 'button');
+mainButton.textContent = 'Play Now';
+
+mainMenu.appendChild(mainText);
+mainMenu.appendChild(mainButton);
+container.appendChild(mainMenu);
+
+
+
+
+mainButton.addEventListener('click', () => {
+    container.removeChild(mainMenu);
+  });
