@@ -1,3 +1,4 @@
+let page = document.querySelector('#page')
 let container = document.querySelector('#container')
 
 let mainMenu = document.createElement('div');
@@ -52,21 +53,78 @@ mainButton.addEventListener('click', () => {
   });
 
 shuri.addEventListener('click', () => {
-    characterSelection = 'Shuri';
+    characterSelection = 1;
     container.removeChild(characterSelectMenu);
+    startgame();
 })
 
 kani.addEventListener('click', () => {
-    characterSelection = 'Kani';
+    characterSelection = 2;
     container.removeChild(characterSelectMenu);
+    startgame();
 })
 
 sinu.addEventListener('click', () => {
-    characterSelection = 'Sinu';
+    characterSelection = 3;
     container.removeChild(characterSelectMenu);
+    startgame();
 })
 
 ninu.addEventListener('click', () => {
-    characterSelection = 'Ninu';
+    characterSelection = 4;
     container.removeChild(characterSelectMenu);
+    startgame();
 })
+
+let playerInfo = document.createElement('div')
+playerInfo.setAttribute('class', 'playerInfo')
+let playerHealth = document.createElement('div')
+playerHealth.setAttribute('class', 'playerHealth')
+
+let computerInfo = document.createElement('div')
+computerInfo.setAttribute('class', 'computerInfo')
+let computerHealth = document.createElement('div')
+computerHealth.setAttribute('class', 'computerHealth')
+
+let gameButtons = document.createElement('div')
+gameButtons.setAttribute('class', 'columnMenu')
+let rockButton = document.createElement('button')
+rockButton.setAttribute('class', 'gameButton')
+rockButton.innerHTML = '<img src="img/rock.png" />'
+let paperButton = document.createElement('button')
+paperButton.setAttribute('class', 'gameButton')
+paperButton.innerHTML = '<img src="img/paper.png" />'
+let scissorsButton = document.createElement('button')
+scissorsButton.setAttribute('class', 'gameButton')
+scissorsButton.innerHTML = '<img src="img/scissors.png" />'
+
+let computerButtons = document.createElement('div')
+gameButtons.setAttribute('class', 'columnMenu')
+let rockComputer = document.createElement('button')
+rockComputer.setAttribute('class', 'gameButton')
+rockComputer.innerHTML = '<img src="img/rock.png" />'
+let paperComputer = document.createElement('button')
+paperComputer.setAttribute('class', 'gameButton')
+paperComputer.innerHTML = '<img src="img/paper.png" />'
+let scissorsComputer = document.createElement('button')
+scissorsComputer.setAttribute('class', 'gameButton')
+scissorsComputer.innerHTML = '<img src="img/scissors.png" />'
+
+gameButtons.appendChild(rockButton)
+gameButtons.appendChild(paperButton)
+gameButtons.appendChild(scissorsButton)
+
+computerButtons.appendChild(rockComputer)
+computerButtons.appendChild(paperComputer)
+computerButtons.appendChild(scissorsComputer)
+
+playerInfo.appendChild(playerHealth)
+playerInfo.appendChild(gameButtons)
+computerInfo.appendChild(computerButtons)
+computerInfo.appendChild(computerHealth)
+
+
+function startgame () {
+    page.appendChild(playerInfo);
+    page.appendChild(computerInfo);
+}

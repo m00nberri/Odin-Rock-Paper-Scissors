@@ -4,7 +4,7 @@ body {
     background-color: lightgray;
 }
 
-.page {
+#page {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    border: 2px blue solid;
 }
 
 .rowMenu {
@@ -66,6 +67,54 @@ button {
 }
 
 .characterSelector img {
+    height: 4em;
+    width: 4em;
+}
+
+.playerInfo {
+    position: absolute;
+    left: 5%;
+    height: 90%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid red 2px;
+}
+
+.playerHealth {
+    height: 95%;
+    width: 45%;
+    background-color: red;
+}
+
+.computerHealth {
+    height: 95%;
+    width: 45%;
+    background-color: red;
+}
+
+.computerInfo {
+    position: absolute;
+    right: 5%;
+    height: 90%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.gameButton {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px black solid;
+}
+
+.gameButton img {
     height: 4em;
     width: 4em;
 }
