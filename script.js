@@ -1,5 +1,6 @@
 let page = document.querySelector('#page')
 let container = document.querySelector('#container')
+container.setAttribute('class', 'columnMenu')
 
 let mainMenu = document.createElement('div');
 mainMenu.setAttribute('class', 'columnMenu');
@@ -46,6 +47,8 @@ characterSelect.appendChild(ninu);
 characterSelectMenu.appendChild(characterSelectText);
 characterSelectMenu.appendChild(characterSelect);
 let characterSelection = ''
+let playerIcon = document.createElement('img')
+playerIcon.setAttribute('class', 'icon')
 
 mainButton.addEventListener('click', () => {
     container.removeChild(mainMenu);
@@ -55,24 +58,28 @@ mainButton.addEventListener('click', () => {
 shuri.addEventListener('click', () => {
     characterSelection = 1;
     container.removeChild(characterSelectMenu);
+    playerIcon.src = 'img/shuri.png';
     startgame();
 })
 
 kani.addEventListener('click', () => {
     characterSelection = 2;
     container.removeChild(characterSelectMenu);
+    playerIcon.src = 'img/kani.png';
     startgame();
 })
 
 sinu.addEventListener('click', () => {
     characterSelection = 3;
     container.removeChild(characterSelectMenu);
+    playerIcon.src = 'img/sinu.png';
     startgame();
 })
 
 ninu.addEventListener('click', () => {
     characterSelection = 4;
     container.removeChild(characterSelectMenu);
+    playerIcon.src = 'img/ninu.png';
     startgame();
 })
 
@@ -123,8 +130,39 @@ playerInfo.appendChild(gameButtons)
 computerInfo.appendChild(computerButtons)
 computerInfo.appendChild(computerHealth)
 
+let gameText = document.createElement('p')
+gameText.textContent = 'FIGHT!'
 
 function startgame () {
+    container.setAttribute('class', 'rowMenu')
     page.appendChild(playerInfo);
     page.appendChild(computerInfo);
+    container.appendChild(playerIcon);
+    container.appendChild(gameText);
+    computerCharacterSelect();
+    container.appendChild(computerIcon);
+}
+
+
+let computerIcon = document.createElement('img')
+computerIcon.setAttribute('class', 'icon')
+
+function computerCharacterSelect () {
+    let select = [1,2,3,4].filter(item => item !== characterSelection);
+    let computerChoice = select[Math.floor(Math.random()*3)];
+    switch (computerChoice) {
+        case 1:
+            computerIcon.src = 'img/shuri.png'
+            break;
+        case 2:
+            computerIcon.src = 'img/kani.png'
+            break;
+        case 3:
+            computerIcon.src = 'img/sinu.png'
+            break;
+        case 4:
+            computerIcon.src = 'img/ninu.png'
+            break;
+    }
+    return computerIcon;
 }
