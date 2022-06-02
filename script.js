@@ -141,8 +141,8 @@ function startgame () {
     container.appendChild(gameText);
     computerCharacterSelect();
     container.appendChild(computerIcon);
+    playGame();
 }
-
 
 let computerIcon = document.createElement('img')
 computerIcon.setAttribute('class', 'icon')
@@ -165,4 +165,37 @@ function computerCharacterSelect () {
             break;
     }
     return computerIcon;
+}
+
+function playGame () {
+    rockButton.addEventListener('click', () => {
+        if (computerPlay() === 'rock') {
+            alert('tie')
+        }
+        else if (computerPlay() === 'paper') {
+            alert('you lose')
+        }
+        else {
+            alert('noice')
+        }
+    })
+    paperButton.addEventListener('click', () => {
+        
+    })
+    scissorsButton.addEventListener('click', () => {
+        
+    })
+}
+
+function computerPlay () {
+    let computerChoice = Math.floor(Math.random()*2);
+    if (computerChoice === 0) {
+        return 'rock';
+    }
+    else if (computerChoice === 1) {
+        return 'paper';
+    }
+    else {
+        return 'scissors';
+    }
 }

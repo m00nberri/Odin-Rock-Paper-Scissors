@@ -123,3 +123,25 @@ button {
     height: 4em;
     width: 4em;
 }
+
+.gameButtonWin {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px greenyellow solid;
+    background-color: green;
+}
+
+.gameButtonLose {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px maroon solid;
+    background-color: red;
+}
