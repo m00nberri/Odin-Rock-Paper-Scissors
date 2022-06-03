@@ -88,15 +88,23 @@ button {
 }
 
 .playerHealth {
+    display: flex;
     height: 95%;
     width: 45%;
     background-color: red;
+    color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .computerHealth {
+    display: flex;
     height: 95%;
     width: 45%;
     background-color: red;
+    color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .computerInfo {
@@ -116,32 +124,161 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px black solid;
+    border: 2px white solid;
 }
 
-.gameButton img {
+.computerButton {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0px black solid;
+    opacity: 40%;
+}
+
+.gameButton img, .computerButton img {
     height: 4em;
     width: 4em;
+}
+
+.gameButtonWin img, .computerButtonWin img {
+    height: 4em;
+    width: 4em;
+}
+
+.gameButtonLose img, .computerButtonLose img {
+    height: 4em;
+    width: 4em;
+}
+
+.gameButtonTie img, .computerButtonTie img {
+    height: 4em;
+    width: 4em;
+}
+
+@keyframes win {
+    0% {
+        background-color: gray;
+        border: 2px white solid;
+        opacity:1;
+    }
+    50% {
+        background-color: green;
+        border: 2px greenyellow solid;
+    }
+    100% {
+        background-color: gray;
+        border: 2px white solid;
+    }
+}
+
+@keyframes lose {
+    0% {
+        background-color: gray;
+        border: 2px white solid;
+        opacity:1;
+    }
+    50% {
+        background-color: red;
+        border: 2px orangered solid;
+    }
+    100% {
+        background-color: gray;
+        border: 2px white solid;
+    }
+}
+
+@keyframes tie {
+    0% {
+        background-color: gray;
+        border: 2px white solid;
+        opacity:1;
+    }
+    50% {
+        background-color: lightgoldenrodyellow;
+        border: 2px silver dashed;
+    }
+    100% {
+        background-color: gray;
+        border: 2px white solid;
+    }
 }
 
 .gameButtonWin {
     width: 7em;
     height: 7em;
     margin: 1em;
+    border: 2px white solid;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px greenyellow solid;
-    background-color: green;
+    animation-name: win;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .gameButtonLose {
     width: 7em;
     height: 7em;
     margin: 1em;
+    border: 2px white solid;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px maroon solid;
-    background-color: red;
+    animation-name: lose;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.gameButton:hover, .gameButtonLose:hover, .gameButtonWin:hover {
+    transform:scale(1.3,1.3);
+    -webkit-transform:scale(1.3,1.3);
+    -moz-transform:scale(1.3,1.3);
+    cursor: pointer;
+}
+
+.computerButtonWin {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    border: 2px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: win;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.computerButtonLose {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    border: 2px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: lose;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.gameButtonTie, .computerButtonTie {
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+    border: 2px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: tie;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }

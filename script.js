@@ -108,13 +108,13 @@ scissorsButton.innerHTML = '<img src="img/scissors.png" />'
 let computerButtons = document.createElement('div')
 gameButtons.setAttribute('class', 'columnMenu')
 let rockComputer = document.createElement('button')
-rockComputer.setAttribute('class', 'gameButton')
+rockComputer.setAttribute('class', 'computerButton')
 rockComputer.innerHTML = '<img src="img/rock.png" />'
 let paperComputer = document.createElement('button')
-paperComputer.setAttribute('class', 'gameButton')
+paperComputer.setAttribute('class', 'computerButton')
 paperComputer.innerHTML = '<img src="img/paper.png" />'
 let scissorsComputer = document.createElement('button')
-scissorsComputer.setAttribute('class', 'gameButton')
+scissorsComputer.setAttribute('class', 'computerButton')
 scissorsComputer.innerHTML = '<img src="img/scissors.png" />'
 
 gameButtons.appendChild(rockButton)
@@ -168,22 +168,58 @@ function computerCharacterSelect () {
 }
 
 function playGame () {
+    let playerHP = 5;
+    playerHealth.textContent = `${playerHP}/5`
+
+    let computerHP =5;
+    computerHealth.textContent = `${computerHP}/5`
+
     rockButton.addEventListener('click', () => {
+        resetButtons();
         if (computerPlay() === 'rock') {
-            alert('tie')
+            rockButton.className = 'gameButtonTie'
+            rockComputer.className = 'computerButtonTie'
         }
         else if (computerPlay() === 'paper') {
-            alert('you lose')
+            rockButton.className = 'gameButtonLose'
+            rockButton.textContent = 'L'
+            paperComputer.className = 'computerButtonWin'
         }
         else {
-            alert('noice')
+            rockButton.className = 'gameButtonWin'
+            rockButton.textContent = 'W'
+            scissorsComputer.className = 'computerButtonLose'
         }
     })
     paperButton.addEventListener('click', () => {
-        
+        resetButtons();
+        if (computerPlay() === 'rock') {
+            paperButton.className = 'gameButtonWin'
+            rockComputer.className = 'computerButtonLose'
+        }
+        else if (computerPlay() === 'paper') {
+            paperButton.className = 'gameButtonTie'
+            paperComputer.className = 'computerButtonTie'
+        }
+        else {
+            paperButton.className = 'gameButtonLose'
+            scissorsComputer.className = 'computerButtonWin'
+        }
     })
     scissorsButton.addEventListener('click', () => {
-        
+        resetButtons();
+        if (computerPlay() === 'rock') {
+            scissorsButton.className = 'gameButtonLose'
+            rockComputer.className = 'computerButtonWin'
+        }
+        else if (computerPlay() === 'paper') {
+            scissorsButton.className = 'gameButtonWin'
+            paperComputer.className = 'computerButtonLose'
+        }
+        else {
+            scissorsButton.className = 'gameButtonTie'
+            scissorsComputer.className = 'computerButtonTie'
+        }
     })
 }
 
@@ -198,4 +234,17 @@ function computerPlay () {
     else {
         return 'scissors';
     }
+}
+
+function resetButtons () {
+    rockButton.className = 'gameButton';
+    paperButton.className = 'gameButton';
+    scissorsButton.className = 'gameButton';
+    rockComputer.className = 'computerButton';
+    paperComputer.className = 'computerButton';
+    scissorsComputer.className = 'computerButton';
+}
+
+function playerWin () {
+
 }
