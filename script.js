@@ -9,7 +9,7 @@ let mainText = document.createElement('p');
 mainText.textContent = 'Super Smash Janken';
 
 let mainButton = document.createElement('button');
-mainButton.setAttribute('class', 'button');
+mainButton.setAttribute('class', 'menuButton');
 mainButton.textContent = 'Play Now';
 
 mainMenu.appendChild(mainText);
@@ -94,12 +94,11 @@ let computerHealth = document.createElement('div')
 computerHealth.setAttribute('class', 'computerHealth')
 
 let playerHP = 5;
-playerHealth.textContent = `${playerHP}/5`
+
 let computerHP =5;
-computerHealth.textContent = `${computerHP}/5`
+
 
 let gameButtons = document.createElement('div')
-gameButtons.setAttribute('class', 'columnMenu')
 let rockButton = document.createElement('button')
 rockButton.setAttribute('class', 'gameButton')
 rockButton.innerHTML = '<img src="img/rock.png" />'
@@ -111,7 +110,6 @@ scissorsButton.setAttribute('class', 'gameButton')
 scissorsButton.innerHTML = '<img src="img/scissors.png" />'
 
 let computerButtons = document.createElement('div')
-gameButtons.setAttribute('class', 'columnMenu')
 let rockComputer = document.createElement('button')
 rockComputer.setAttribute('class', 'computerButton')
 rockComputer.innerHTML = '<img src="img/rock.png" />'
@@ -143,6 +141,7 @@ function startgame () {
     page.appendChild(playerInfo);
     page.appendChild(computerInfo);
     container.appendChild(playerIcon);
+    gameText.textContent = 'Fight!'
     container.appendChild(gameText);
     computerCharacterSelect();
     container.appendChild(computerIcon);
@@ -173,57 +172,14 @@ function computerCharacterSelect () {
 }
 
 function playGame () {
-    rockButton.addEventListener('click', () => {
-        resetButtons();
-        if (computerPlay() === 'rock') {
-            rockButton.className = 'gameButtonTie'
-            rockComputer.className = 'computerButtonTie'
-        }
-        else if (computerPlay() === 'paper') {
-            lose();
-            rockButton.className = 'gameButtonLose'
-            paperComputer.className = 'computerButtonWin'
-        }
-        else {
-            win();
-            rockButton.className = 'gameButtonWin'
-            scissorsComputer.className = 'computerButtonLose'
-        }
-    })
-    paperButton.addEventListener('click', () => {
-        resetButtons();
-        if (computerPlay() === 'rock') {
-            win();
-            paperButton.className = 'gameButtonWin'
-            rockComputer.className = 'computerButtonLose'
-        }
-        else if (computerPlay() === 'paper') {
-            paperButton.className = 'gameButtonTie'
-            paperComputer.className = 'computerButtonTie'
-        }
-        else {
-            lose();
-            paperButton.className = 'gameButtonLose'
-            scissorsComputer.className = 'computerButtonWin'
-        }
-    })
-    scissorsButton.addEventListener('click', () => {
-        resetButtons();
-        if (computerPlay() === 'rock') {
-            lose();
-            scissorsButton.className = 'gameButtonLose'
-            rockComputer.className = 'computerButtonWin'
-        }
-        else if (computerPlay() === 'paper') {
-            win();
-            scissorsButton.className = 'gameButtonWin'
-            paperComputer.className = 'computerButtonLose'
-        }
-        else {
-            scissorsButton.className = 'gameButtonTie'
-            scissorsComputer.className = 'computerButtonTie'
-        }
-    })
+    playerHP = 5;
+    computerHP =5;
+    playerHealth.textContent = `${playerHP}/5`
+    computerHealth.textContent = `${computerHP}/5`
+
+    rockButton.addEventListener('click', rockPlay);
+    paperButton.addEventListener('click', paperPlay);
+    scissorsButton.addEventListener('click', scissorsPlay);
 }
 
 function computerPlay () {
@@ -248,11 +204,82 @@ function resetButtons () {
     scissorsComputer.className = 'computerButton';
 }
 
+async function rockPlay () {
+    resetButtons();
+
+    await delay(200);
+
+    if (computerPlay() === 'rock') {
+        rockButton.className = 'gameButtonTie'
+        rockComputer.className = 'computerButtonTie'
+    }
+    else if (computerPlay() === 'paper') {
+        lose();
+        rockButton.className = 'gameButtonLose'
+        paperComputer.className = 'computerButtonWin'
+    }
+    else {
+        win();
+        rockButton.className = 'gameButtonWin'
+        scissorsComputer.className = 'computerButtonLose'
+    }
+}
+
+async function paperPlay () {
+    resetButtons();
+
+    await delay(200);
+
+    if (computerPlay() === 'rock') {
+        win();
+        paperButton.className = 'gameButtonWin'
+        rockComputer.className = 'computerButtonLose'
+    }
+    else if (computerPlay() === 'paper') {
+        paperButton.className = 'gameButtonTie'
+        paperComputer.className = 'computerButtonTie'
+    }
+    else {
+        lose();
+        paperButton.className = 'gameButtonLose'
+        scissorsComputer.className = 'computerButtonWin'
+    }
+}
+
+async function scissorsPlay () {
+    resetButtons();
+
+    await delay(200);
+
+    if (computerPlay() === 'rock') {
+        lose();
+        scissorsButton.className = 'gameButtonLose'
+        rockComputer.className = 'computerButtonWin'
+    }
+    else if (computerPlay() === 'paper') {
+        win();
+        scissorsButton.className = 'gameButtonWin'
+        paperComputer.className = 'computerButtonLose'
+    }
+    else {
+        scissorsButton.className = 'gameButtonTie'
+        scissorsComputer.className = 'computerButtonTie'
+    }
+}
+
 function win () {
     if (computerHP === 1) {
-        computerHealth.style.height = '5px'
+        computerHealth.style.height = '15px'
         computerHP -= 1;
         computerHealth.textContent = `DEFEATED`;
+        container.setAttribute('class', 'columnMenu');
+        container.removeChild(computerIcon);
+        gameText.textContent = `Congratulations, you won!`;
+        container.appendChild(playAgainButton);
+        rockButton.removeEventListener('click', rockPlay);
+        paperButton.removeEventListener('click', paperPlay);
+        scissorsButton.removeEventListener('click', scissorsPlay);
+        playAgainButton.addEventListener('click', playAgain)
     }
     else {
         computerHit();
@@ -263,9 +290,17 @@ function win () {
 
 function lose () {
     if (playerHP === 1) {
-        playerHealth.style.height = '5px';
+        playerHealth.style.height = '15px';
         playerHP -= 1;
         playerHealth.textContent = `DEFEATED`;
+        container.setAttribute('class', 'columnMenu');
+        container.removeChild(computerIcon);
+        gameText.textContent = `Sorry, you lost!`;
+        container.appendChild(playAgainButton);
+        rockButton.removeEventListener('click', rockPlay);
+        paperButton.removeEventListener('click', paperPlay);
+        scissorsButton.removeEventListener('click', scissorsPlay);
+        playAgainButton.addEventListener('click', playAgain)
     }
     else {
         playerHit();
@@ -280,4 +315,29 @@ function playerHit () {
 
 function computerHit () {
     computerHealth.style.height = (computerHealth.offsetHeight - (computerInfo.offsetHeight * 0.20)) + 'px';
+}
+
+
+let playAgainButton = document.createElement('button');
+playAgainButton.setAttribute('class', 'button');
+playAgainButton.textContent = 'Play Again?';
+
+async function playAgain () {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    container.appendChild(characterSelectMenu);
+    page.removeChild(playerInfo);
+    page.removeChild(computerInfo);
+    resetButtons();
+    playerHealth.style.height = '90%'
+    computerHealth.style.height = '90%'
+    await delay(50);
+    playAgainButton.removeEventListener('click', playAgain);
+}
+
+function delay(milliseconds){
+    return new Promise(resolve => {
+        setTimeout(resolve, milliseconds);
+    });
 }

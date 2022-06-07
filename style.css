@@ -2,6 +2,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: lightgray;
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 1.5em;
 }
 
 #page {
@@ -9,15 +11,20 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-image: url('img/bg.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 #container {
     display: flex;
     justify-content: space-around;
-    border: .2em red solid;
-    height: 20%;
-    width: 30%;
-    background-color: white;
+    border: .2em white solid;
+    box-shadow: 0px 0px 10px 2px black;
+    min-height: 20vh;
+    min-width: 70vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
 }
 
 .columnMenu {
@@ -25,7 +32,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 2px blue solid;
+    min-width: 30vh;
 }
 
 .rowMenu {
@@ -46,45 +53,65 @@ body {
 }
 
 button {
-    background-color: grey;
-    border: none;
+    background-color: transparent;
+    border: 4px solid white;
     color: white;
     width: 30%;
-    min-width: 5em;
-    max-width: 10em;
+    min-width: 3em;
+    max-width: 5em;
+    min-height: 3em;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    margin: 10%;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 1.5em;
+  }
+
+.menuButton {
+    color: white;
+    width: 30%;
+    min-width: 6em;
+    min-height: 3em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 1.5em;
   }
 
 .characterSelector {
-    max-width: 5em;
-    max-height: 5em;
+    max-width: 2em;
+    max-height: 2em;
     display: flex;
     align-items: center;
-    border: 2px black solid;
+    justify-content: center;
 }
 
 .characterSelector img {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
 }
 
 .icon {
-    max-width: 7em;
-    max-height: 7em;
+    max-width: 5em;
+    max-height: 5em;
 }
 
 .playerInfo {
     position: absolute;
     left: 5%;
     height: 90%;
-    width: 20%;
+    width: 20vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: solid red 2px;
+    background-color: rgb(0, 0, 0, .3);
+    border: .2em white solid;
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .playerHealth {
@@ -111,15 +138,18 @@ button {
     position: absolute;
     right: 5%;
     height: 90%;
-    width: 20%;
+    width: 20vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: rgb(0, 0, 0, .3);
+    border: .2em white solid;
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .gameButton {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     display: flex;
     align-items: center;
@@ -128,8 +158,8 @@ button {
 }
 
 .computerButton {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     display: flex;
     align-items: center;
@@ -139,28 +169,28 @@ button {
 }
 
 .gameButton img, .computerButton img {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
 }
 
 .gameButtonWin img, .computerButtonWin img {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
 }
 
 .gameButtonLose img, .computerButtonLose img {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
 }
 
 .gameButtonTie img, .computerButtonTie img {
-    height: 4em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
 }
 
 @keyframes win {
     0% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
         opacity:1;
     }
@@ -169,14 +199,14 @@ button {
         border: 2px greenyellow solid;
     }
     100% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
     }
 }
 
 @keyframes lose {
     0% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
         opacity:1;
     }
@@ -185,30 +215,30 @@ button {
         border: 2px orangered solid;
     }
     100% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
     }
 }
 
 @keyframes tie {
     0% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
         opacity:1;
     }
     50% {
         background-color: lightgoldenrodyellow;
-        border: 2px silver dashed;
+        border: 2px goldenrod groove;
     }
     100% {
-        background-color: gray;
+        background-color: transparent;
         border: 2px white solid;
     }
 }
 
 .gameButtonWin {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     border: 2px white solid;
     display: flex;
@@ -221,8 +251,8 @@ button {
 }
 
 .gameButtonLose {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     border: 2px white solid;
     display: flex;
@@ -234,7 +264,7 @@ button {
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.gameButton:hover, .gameButtonLose:hover, .gameButtonWin:hover {
+button:hover {
     transform:scale(1.3,1.3);
     -webkit-transform:scale(1.3,1.3);
     -moz-transform:scale(1.3,1.3);
@@ -242,8 +272,8 @@ button {
 }
 
 .computerButtonWin {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     border: 2px white solid;
     display: flex;
@@ -256,8 +286,8 @@ button {
 }
 
 .computerButtonLose {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     border: 2px white solid;
     display: flex;
@@ -270,8 +300,8 @@ button {
 }
 
 .gameButtonTie, .computerButtonTie {
-    width: 7em;
-    height: 7em;
+    width: 3em;
+    height: 3em;
     margin: 1em;
     border: 2px white solid;
     display: flex;
